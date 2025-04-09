@@ -33,25 +33,71 @@ Ej: input[type="text"] { ... } selecciona <input> cuyo atributo type sea "text".
 
 
 h1 {
-    color: blueviolet;
-    background-color: darkgray;
+    color: blueviolet; /*define el color del texto de un elemento.*/
+    background-color: darkgray;/*define el color del fondo q ocupa un elemento.*/
+    opacity: 1.0; /* controla la opacidad (transparencia) de un elemento; va de 0 (transparente) a 1 (opaco).*/
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* especifica la fuente/tipografía.Es buenalistar fuentes alternativas y una genérica al final.*/
+    font-size: 50px;/* tamaño de texto,  Se puede usar px (píxeles), em, rem, %, etc. (16px ≈ tamaño por defecto).*/
+    font-weight: bolder;/*grosor de la fuente. Valores comunes: normal, bold (negrita), o números 100 a 900 (400 es normal, 700 es bold generalmente).*/
+    font-style: oblique; /*estilo de fuente, por ejemplo normal o italic (cursiva).*/
+    text-decoration: wavy;/* decoración del texto, p.ej. none quita subrayado (útil para enlaces), underline subraya*/
+    text-align: center;/*alineación del texto dentro de su contenedor. left right center justify*/
 }
 h3 {
     color: coral;
     background-color: snow;
+    font-family: fantasy;
+    opacity: 0.9;
+    font-weight: 300;
+    font-size: 25px;
+    margin: 10px 5px;/* espacio externo alrededor de la caja del elemento.
+     Se puede especificar cada lado por separado (margin-top, margin-right, margin-bottom, margin-left) o todos en una shorthand.*/
+    padding: 20px;/*espacio interno entre el contenido de un elemento y su borde. Similar sintaxis a margin (top, right, bottom, left)*/
+
 
 }
-li {
-    color: darkmagenta;
-    background-color:mistyrose;
+#leyenda {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    font-style: italic;
 }
+nav{
+    border: 4px;/* borde alrededor de la caja del elemento. Puedes definir grosor, estilo y color*/
+    border-color: rgb(101, 101, 250);
+    background-color: rgb(171, 166, 236);
+    border-radius: 10px;
+    text-align: left;
+    width: 700px;
+    border-style: inset;
+}
+
+
+
 p {
     color:yellowgreen ;
     background-color: floralwhite;
+    padding: 30px;
+}
+.importante {
+    font-family:inherit ;
+    font-size: 21px;
+    color:rgb(188, 145, 228)
+    
+}
+#caja{
+    width: 200px;
+    height: 150px;
+    background-color: pink;
+    padding: 20px;
+    margin: 20px;
+    border: 10px  rgb(218, 84, 162) ;
+    border-style: groove;
+    border-radius: 20px;
 }
 body {
     background-color: rgb(202, 197, 190);
 }
 a {
     color:purple;
+    font-style: none;
 }
