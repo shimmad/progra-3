@@ -1,0 +1,57 @@
+/*
+-------seleccionar elementos---------
+
+por clase   .especial { ... } selecciona cualquier elemento con class="especial".
+
+por id UNICO #cabecera { ... } seleccionaría <div id="cabecera"> 
+
+*: selector univaersaL, puede servir para margenes de la pagina 
+
+mismas reglas a múltiples elementos separando los selectores con comas. Ej: h1, h2, h3 { color: navy; }
+
+div p { ... } aplicaría el estilo solo a los <p> que estén dentro de un <div>.
+
+para listas:
+se usa el símbolo > entre dos selectores para seleccionar elementos que sean hijos directos de otro.
+Ej: ul > li { ... } solo selecciona <li> que cuelgan directamente de un <ul>, pero no niveles más profundos.
+con el símbolo +, selecciona el elemento que es hermano inmediatamente siguiente de otro en el mismo nivel.
+Ej: h1 + p { ... } selecciona el <p> justo después de un <h1>.
+
+Ej: h1 ~ p { ... } selecciona todos los párrafos que van después de un <h1> común (no solo el primero).
+
+Ej: input[type="text"] { ... } selecciona <input> cuyo atributo type sea "text".
+
+---------------
+
+*/
+#menu li { /*selector combinado id menu con item li, pero no con el enlace a*/
+    color:gold;}
+#menu li:first-child { /*funcion para elegir el primer item*/
+        font-weight: bold;
+    }
+    
+
+
+h1 {
+    color: blueviolet;
+    background-color: darkgray;
+}
+h3 {
+    color: coral;
+    background-color: snow;
+
+}
+li {
+    color: darkmagenta;
+    background-color:mistyrose;
+}
+p {
+    color:yellowgreen ;
+    background-color: floralwhite;
+}
+body {
+    background-color: rgb(202, 197, 190);
+}
+a {
+    color:purple;
+}
