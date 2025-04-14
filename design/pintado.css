@@ -1,0 +1,60 @@
+h2{
+    color:rebeccapurple;
+    font-family:gotico;
+    font-weight: 900;
+    font-size: 24px;
+    font-style: italic;
+    text-align: center;/*alinea texto dentro de un contenedor*/
+    text-transform: uppercase capitalize;
+
+}
+li {
+    color: peachpuff;
+    text-align: justify;
+    letter-spacing: 1px;
+    font-family: gotico;
+    
+}
+span {
+    color:darkgoldenrod;
+    font-weight: bold; /*de 600 a 900 son mas gruesas, bold y 700 es lo mismo*/
+    text-decoration: line-through;
+}
+.veridico {
+    color:brown;
+    font-style:oblique;/*italic es la mas inclinada*/
+
+}
+
+#natural{
+    color:hotpink
+}
+    
+p{
+    color: slateblue;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    font-weight: lighter;
+    text-align: center;
+    line-height: 1.5;
+    
+    
+
+}
+h1{
+    text-align: right;
+    font-family: gotico;
+    font-weight: 900;
+}
+div{
+    background-color: blueviolet;
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    padding: 30px;
+}
+input{
+    width: 80%;
+}
+form{
+    width: 300px;
+}

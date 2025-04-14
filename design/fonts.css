@@ -1,0 +1,22 @@
+/*aca voy a cargar todas las fuentes que quiera*/
+
+@font-face {
+    font-family: "gotico";
+    src: url("../fonts/static/GrenzeGotisch-Regular.ttf") format("truetype");
+    font-weight: 400;
+    /*le indico el formato para q cargue en el navegador nmas facil, ttf es truetype*/
+
+}
+
+@font-face {
+    font-family: "gotico";
+    src: url("../fonts/static/GrenzeGotisch-ExtraBold.ttf") format("truetype");
+    font-weight: 700;
+
+}
+
+@font-face {
+    font-family: "gotico";
+    src: url("../fonts/static/GrenzeGotisch-Black.ttf") format("truetype");
+    font-weight: 900;
+}
