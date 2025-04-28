@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 1</title>
+    <style>
+        .resaltado{
+            background-color: yellow;
+            font-weight: bold;
+        }
+        .oculto{
+            display: none;
+        }
+        .completado{
+            text-decoration: line-through;
+            color: red;
+            opacity: 0.6;
+        }
+        .error{
+            color: red;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 id="tituloPrincipal">ejercicio 1</h1> <!--titulo en camelcase-->
+    <div id="contenedor">
+        <p class="parrafo">estos son 3 elementos pricipales</p>
+        <ul id="predeterminada">
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+        </ul>
+    </div>
+    <p class="parrafo"> aca describo la importancia de cada elemento en varios idiomas</p>
+<!-- div de ejercicio 2-->
+    <div class="interactuo">
+        <input id="opino" type="text" placeholder="que opinas?">
+        <button id="agregar">agregar</button>
+        
+        <ul id="opiniones"></ul>
+    </div>
+    <p class="parrafo">igual la opinion de los demas nunca importo</p>
+
+    <div class=herramientas>
+        <button id="ocultar">ocultar</button>
+        <button id="resaltar">resaltar</button>
+    </div>
+    <div class="ingresa">
+        <ul id="tareas"></ul>
+        <form id="formulario">
+            <input id="tarea" type="text" placeholder="nueva tarea...">
+            <button id="enviar" type="submit">enviar</button>
+        </form>
+
+    <div class="validacion">
+        <form id="formValida">
+            <label>
+                Nombre:
+                <input type="text" id="inputName">
+                <span class="error" id="errorName"></span>
+            </label><br>
+
+            <label>
+                Email:
+                <input type="email" id="inputEmail">
+                <span class="error" id="errorEmail"></span>
+            </label><br>
+
+            <label>
+                Edad:
+                <input type="number" id="inputAge">
+                <span class="error" id="errorAge"></span>
+            </label><br>
+
+            <button type="submit" id="btnValidar">Enviar</button>
+
+        <script>
+  
+
+        //formas de navegR EL dom, accedo a cada nodo del html para modificae contenido y estilos
+        let titulo = document.getElementById("tituloPrincipal");
+        titulo.textContent = "übungen!!!";
+        let parrafos = document.getElementsByClassName("parrafo"); //devuelve un array porq la clase puede ontener varios elementos
+        for (let i=0;i < parrafos.length;i++){ //para recorrer todos los parrafos
+            parrafos[i].style.color = "blueviolet";
+        }
+        let lista = document.querySelectorAll("li");
+        // devulve un nodelist de todos los elementos q coincidan con el selector css
+        for (let i=0;i < lista.length;i++){
+            lista[i].textContent+= "!!!";
+        }
+
+        //ejercicio 2
+
+        let userOpina = document.getElementById("opino"); //data ingresada
+       let btnAgregar = document.getElementById("agregar"); //boton de agregar
+       let listaOpiniones = document.getElementById("opiniones"); //ul
+
+
+       btnAgregar.addEventListener("click", function () {
+        if (userOpina.value.trim() === "") return;
+
+        let nuevaOpinion = document.createElement("li");
+        nuevaOpinion.textContent = userOpina.value + " ";
+
+        let btnEliminar = document.createElement("button");
+        btnEliminar.textContent = "Eliminar";
+
+        btnEliminar.addEventListener("click", function () {
+            nuevaOpinion.remove();
+        });
+
+        nuevaOpinion.appendChild(btnEliminar);
+        listaOpiniones.appendChild(nuevaOpinion);
+        userOpina.value = ""; //reseteo input
+     });
+
+     //ejercicio 3
+     let ocultar = document.getElementById("ocultar");
+     let resaltar = document.getElementById("resaltar");
+     let parrafos2 = document.getElementsByClassName("parrafo");
+
+     ocultar.addEventListener("click", function () {
+        for (let i=0;i < parrafos2.length;i++){
+            parrafos2[i].classList.toggle("oculto");
+        }
+     });
+     //jeje no se puede resetar
+     resaltar.addEventListener("click", function () {
+        for (let i=0;i < parrafos2.length;i++){
+            parrafos2[i].classList.add("resaltado");
+        }
+     });
+ // ejercicio 4
+        let tareas = document.getElementById("tareas"); //ul
+        let input2 = document.getElementById("tarea"); //input
+        let formulario = document.getElementById("formulario");
+
+        formulario.addEventListener("submit", function (e) {
+            e.preventDefault(); //evita el envio del formulario
+
+            if (input2.value.trim() === "") return;
+
+            let nuevaTarea = document.createElement("li");
+            nuevaTarea.textContent = input2.value + " ";
+
+            nuevaTarea.addEventListener("click", function () {
+                nuevaTarea.classList.toggle("completado");
+            });
+
+
+            tareas.appendChild(nuevaTarea);
+            input2.value = "";
+        });
+
+        //ejercicio 5
+        const formValida = document.getElementById("formValida");
+        formValida.addEventListener("submit", function (e) {
+            e.preventDefault(); //prevenir el envio
+
+            //valores de input
+            const inputName = document.getElementById("inputName").value.trim();
+            const inputEmail = document.getElementById("inputEmail").value.trim();
+            const inputAge = document.getElementById("inputAge").value.trim();
+
+            let hayerrores = false;
+
+            //limpio errores anteriores
+            document.getElementById("errorName").textContent = "";
+            document.getElementById("errorEmail").textContent = "";
+            document.getElementById("errorAge").textContent = "";
+
+            if (inputName === "") {
+                document.getElementById("errorName").textContent = "El nombre es obligatorio";
+                hayerrores = true;
+            }
+
+            if (inputEmail === "") {
+                document.getElementById("errorEmail").textContent = "El email es obligatorio";
+                hayerrores = true;
+            }
+
+            if (inputAge === "" || inputAge < 18) {
+                document.getElementById("errorAge").textContent = "La edad es obligatoria, debes tener 18 en adelante.";
+                hayerrores = true;
+            }
+
+            if (!hayerrores) {
+                alert("Formulario enviado con exito");
+                formValida.reset();
+            }
+        }); 
+
+
+    </script>
+    
+</body>
+</html>

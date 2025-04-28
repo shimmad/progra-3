@@ -51,6 +51,8 @@ div{
     height: 300px;
     margin: 20px;
     padding: 30px;
+    border:10px groove pink;
+    box-sizing: border-box; /*respeta el width y el height */
 }
 input{
     width: 80%;
@@ -58,3 +60,8 @@ input{
 form{
     width: 300px;
 }
+/*
+em: va entre nodos anteriores buscando el font size
+vp: vh, vw, lo disponible a la vista (comun para ventanas modales)
+box-sizing=box-bording, para q no haya scroll bars
+*/

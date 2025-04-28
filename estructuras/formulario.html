@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario</title>
+    <link rel="stylesheet" href="../design/formulario.css">
+</head>
+<body>
+    
+    <form >
+        <h1>formulario</h1>
+        <div id="infoPersonal">
+            <label for="name">nombre</label>
+            <input type="text" name="name" id="name" placeholder="jose perez">
+            <label for="email">email</label>
+            <input type="email" name="email" id="email" placeholder="joseperez@mail.com">
+        </div>
+        <fieldset class="radiobtn"> <!--fieldset sirve para agrupar elementos en un formulario-->
+            <legend>tipo de consulta</legend>
+            <label>
+                <input type="radio" name="tipo" id="consulta">consulta
+            </label>
+            <label>
+                <input type="radio" name="tipo" id="reclamo">reclamo
+            </label>
+            <label>
+                <input type="radio" name="tipo" id="sugerencia">sugerencia
+            </label>
+        </fieldset>
+            
+       
+        <fieldset class="seleccion">
+            <legend>asunto</legend>
+            
+            <select name="asunto" id="asunto">
+                <option>receta</option>
+                <option>ingredientes</option>
+                <option>dificultad</option>
+            </select> 
+        </fieldset>  
+        <fieldset class="check">
+            <legend>notificaciones</legend>
+         <label>
+            <input type="checkbox" name="newsletter" id="newsletter">
+            Deseo recibir el newsletter</label>
+        </fieldset>
+         
+
+        <label id="mensajetxt">Mensaje</label>
+        <textarea name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
+        
+
+        <button type="submit">enviar</button>
+        
+    </form>
+        
+    
+</body>
+</html>
