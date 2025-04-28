@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contador</title>
+    <style>
+        body{
+            background-color: rgb(0, 0, 0);
+            transition: background-color 0.4s ease;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            font-family: sans-serif;
+            height: 100vh;
+            margin: 0;
+        }
+        .contenedor{
+            width: 300px;
+            height: auto;
+            background-color: rgb(240, 209, 209);
+            padding: 2em;
+            border-radius: 10px;
+            
+        }
+        .contador{
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1em;
+
+        }
+        .botones{
+            display: flex;
+            gap: 1em;
+            justify-content: center;
+        }
+        button{
+            padding: 0.7em 1.5em;
+            font-size: 1rem;
+            border: groove 3px rgb(0, 0, 0);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover{
+            opacity: 0.8;
+        }
+
+      
+        #reiniciar{
+            background-color: rgb(115, 141, 255);
+        }
+        #restar{
+            background-color: rgb(255, 98, 98);
+        }
+        #sumar{
+            background-color: rgb(164, 255, 122);
+        }
+        ;
+
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <div class="contador" id="valor">0</div>
+        <div class="botones">
+            <button id="restar" onclick="modificar(-1)">-</button>
+            <button id="reiniciar" onclick="reiniciar()">Reiniciar</button>
+            <button id="sumar" onclick="modificar(+1)">+</button>
+
+        </div>
+    </div>
+    <script>
+        const valor= document.getElementById("valor");
+        let contador=0;
+        function modificar(n){
+            contador+=n;
+            valor.innerHTML=contador; // inner html hace que se modifique el elemento llamado valor
+        }
+        function reiniciar(){
+            contador=0;
+            valor.innerHTML=contador;
+        }
+        /*
+        const valor = document.querySelector('#valor');
+        const sumar= document.querySelector('#sumar');
+        const restar= document.querySelector('#restar');
+        const reiniciar= document.querySelector('#reiniciar');
+        let contador= 0;
+        sumar.addEventListener('click',function(){contador++;
+        valor.textContent=contador;
+        });
+        restar.addEventListener('click',function(){contador--;
+        valor.textContent=contador;});
+        reiniciar.addEventListener('click',function(){contador=0;
+        valor.textContent=contador;});
+    
+        */
+    </script>
+    
+</body>
+</html>

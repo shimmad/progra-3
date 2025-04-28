@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>el fondo</title>
+    <style>
+        body{
+            background-color: rgb(0, 0, 0);
+            transition: background-color 0.4s ease;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            font-family: sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .contenedor{
+            width: 300px;
+            height: auto;
+            background-color: rgb(240, 209, 209);
+            padding: 2em;
+            border: solid 3px white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px black;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+           
+        }
+    </style>
+<body>
+    <div class="contenedor">
+        <p>El fondo cambiara de color en 1 segundo</p>
+        <button id="iniciar">iniciar</button>
+        <button id="detener">detener</button>
+    </div>
+    <script>
+        /*accedo a los botontes*/
+        const iniciar= document.getElementById("iniciar");
+        const detener= document.getElementById("detener");
+        const colores=["red","blue","green","yellow","pink","violet"]
+        const body= document.querySelector("body");
+
+        let intervalo= null;//para detener el intervalo
+        let indice=0; //para recorrer los colores;
+
+        /*una funcion para cambiar el color por segundo*/
+        function cambiarColor(){
+           if (intervalo==null){
+            intervalo= setInterval(() => {
+                body.style.backgroundColor=colores[indice];
+                indice=(indice+1)%colores.length;// Cuando llega al final, vuelve a empezar
+            }, 1000);
+            }
+        }
+        function detenerColor(){
+            clearInterval(intervalo); //detiene el intervalo
+            intervalo=null;//reswt para empezar denuevo
+            body.style.backgroundColor="black";
+            indice=0;//reseteo al color de inicio
+        }
+        /*escuha el evento de clickear el boton capturado por las variables iniciar y detener*/
+        iniciar.addEventListener("click", cambiarColor);/*sin parentesis la funcion, sino se ejecuta ciuando se carga la pagina, no cuand sucede el cick*/
+        detener.addEventListener("click", detenerColor)
+
+    </script>
+    
+</body>
+</html>

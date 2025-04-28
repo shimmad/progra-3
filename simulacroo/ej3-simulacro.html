@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>contador numerico</title>
+        <style>
+            body{
+                margin:0;
+                height:100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: sans-serif;
+                background-color: rgb(175, 123, 175);
+            }
+            .contenedor{
+                background: white;
+                width: 300px;
+                height:200px;
+                padding: 2em;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px black;
+                text-align: center;
+
+            }
+            .contador{
+                font-size:4rem;
+                margin-bottom: 1em;
+            }
+            .botones button{
+                margin: 0;
+                padding: 0.7em;
+                font-size: 1.2rem;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.2s;
+                
+            }
+            #valor{
+                color: rgb(230, 96, 218);
+            }
+            #sumar{
+                background-color: green;
+                color:white;
+            }
+            #restar{
+                background-color: rgb(204, 39, 116);
+                color:white;
+            }
+            #reiniciar{
+                background-color: rgb(124, 218, 218);
+                color: white;
+            }
+            .botones button:hover{
+                opacity: 0.9;
+
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+        <div class="contenedor">
+            <div class="contador" id="valor">0</div>
+            <div class="botones">
+                <button id="restar" onclick="modificar(-1)">-</button>
+                <button id="reiniciar" onclick="reiniciar()">Reiniciar</button>
+                <button id="sumar" onclick="modificar(+1)">+</button>
+
+            </div>
+
+        </div>
+
+        <script>
+            let contador=0;
+            const valor= document.getElementById("valor");
+
+            function modificar(num){
+                contador+=num;
+                valor.textContent=contador;
+            }
+            function reiniciar(){
+                contador=0;
+                valor.textContent=contador;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bittesehr</title>
+    <style>
+        body{
+            background-color: rgb(99, 199, 245);
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            font-family: sans-serif;
+            margin: 0;
+            height: 100vh;
+        }
+        .contenerdor{
+            width: 300px;
+            height: auto;
+            background-color: rgb(240, 209, 209);
+            padding: 2em;
+            border: solid 3px white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px black;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+        .parrafo{
+            text-align: center;
+        }
+        .herramientas{
+            display: flex;
+            gap: 1em;
+            justify-content: center;
+
+        }
+        button{
+            padding: 0.5em;
+            border-radius: 8px;
+            border:color(from color srgb r g b);
+            cursor: pointer;
+            box-shadow: 0 4px 12px black;
+            background-color: rgb(238, 34, 34);
+        }
+        .resaltado{
+            background-color: rgb(244, 248, 14);
+            font-weight: bold;
+        }
+        .oculto{
+            display: none;
+        }
+      
+    </style>
+</head>
+<body>
+    <div class="contenerdor">   
+        <p class="parrafo">verblibe in aller freundschaft</p>
+        <p class="parrafo">ich habe die ganze nacht durchgeschlafen</p>
+        <p class="parrafo">wenn jemandvnach mir fragt, sagen Sie bitte, dass ich gleich zurückkomme</p>
+        <div class="herramientas">
+            <button id="ocultar">ocultar</button>
+            <button id="resaltar">resaltar</button>
+            <button id="deshacer">deshacer</button>
+        </div>
+    </div>
+    <script>
+        const parrafo= document.getElementsByClassName("parrafo");
+        const herramientas= document.getElementsByClassName("herramientas");
+        const ocultar= document.getElementById("ocultar");
+        const resaltar= document.getElementById("resaltar");
+        const deshacer= document.getElementById("deshacer");
+
+        ocultar.addEventListener("click",function(){
+            for (let i=0;i < parrafo.length;i++){
+                parrafo[i].classList.add("oculto");
+                // add sirve para agregar una clase
+            }
+        });
+
+        resaltar.addEventListener("click",function(){
+            for (let i=0;i < parrafo.length;i++){
+                parrafo[i].classList.toggle("resaltado");
+                //toggle sirve para agregar una clase si no la tiene y si la tiene la quita
+            }
+        });
+        
+        deshacer.addEventListener("click",function(){
+            for (let i=0;i < parrafo.length;i++){
+                parrafo[i].classList.remove("resaltado");
+                parrafo[i].classList.remove("oculto");
+                // remove sirve para quitar una clase de un parrafo
+            }
+        });
+
+    </script>
+</body>
+</html>

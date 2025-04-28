@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fon2</title>
+    <style>
+        body{
+            background-color: rgb(0, 0, 0);
+            transition: background-color 0.4s ease;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            font-family: sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .contenedor{
+            width: 300px;
+            height: auto;
+            background-color: rgb(240, 209, 209);
+            padding: 2em;
+            border: solid 3px white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px black;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+            
+        }
+        button{
+            padding: 0.7em 1.5em;
+            font-size: 1rem;
+            border: 3px solid rgb(126, 23, 126);
+            border-radius: 6px;
+            margin-bottom: 1em;
+            cursor: pointer;
+        }
+        button:hover{
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <button id="cambio">cambio</button>
+    </div>
+    <script>
+        const btnCambio= document.getElementById("cambio");
+        const body= document.querySelector("body");
+        const arrayColores=["red","blue","green","yellow","pink","violet"];
+
+        let indice=0
+        
+
+        function cambiarColor(){
+           body.style.backgroundColor=arrayColores[indice];
+
+           indice ++;
+           if(indice==arrayColores.length){
+            indice=0;
+           }
+        }
+
+        btnCambio.addEventListener("click",cambiarColor);
+
+       
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario nombre</title>
+    <style>
+        body{
+            background-color: rgb(255, 98, 98);
+            align-items: center; /*alinea a lo vertical*/
+            justify-content: center; /*alinea a lo horizontal*/
+            display: flex;/* para centrar*/
+            font-family: sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        form{ /*la caja*/
+            width: 300px;
+            height: auto;
+            background-color: rgb(240, 209, 209);
+            padding: 1em;
+            border: solid 3px white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px black;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+
+        }
+        P{
+            color: rgb(82, 25, 136);
+            font-size: large;
+        }
+        input{
+            width: auto;
+            height: auto;
+            padding: 0.8em;
+            margin: 5px;
+            font-size: 1rem;
+            border: 3px solid rgb(126, 23, 126);
+            border-radius: 6px;
+            
+        }
+        button{
+            margin: 10px;
+            padding: 0.7em;
+            background-color: rgb(126, 23, 126);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .error{
+            color: red;
+            display: none;
+            margin: 5px;
+            /*lo escondo*/
+        }
+
+    </style>
+<body>
+    <form>
+        <P>hola! como te llamas? <P>
+        <input type="text" id="nombre" placeholder="tu nombre...">
+        <div class="error" id="mensajError">es obligatorio el nombre!</div>
+        <button type="submit">Enviar</button>
+    </form>
+    <script>
+        const formulario= document.querySelector('form');
+        const nombre=document.getElementById('nombre');
+        const error=document.getElementById ('mensajError');
+
+        formulario.addEventListener('submit', function(e) {
+            e.preventDefault();// para que no se recargue la pagina
+
+            if (nombre.value.trim()===""){
+                error.style.display="block";
+                //display block hace que el mensaje aparezca porque block es el valor por defecto
+            }else{
+                error.style.display="none";
+                alert("se envio el formulario")
+                formulario.reset();
+            }
+        });
+    </script>
+</body>
+</html>

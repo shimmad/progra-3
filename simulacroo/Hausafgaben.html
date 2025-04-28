@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Die Hausaufgaben</title>
+    <style>
+        body{
+            background-color: rgb(255, 216, 216);
+            transition: background-color 0.4s ease;
+            margin:10px;
+            display: flex;
+            justify-content: center;
+           
+        
+            font-family: sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .contenedor{
+            width: auto;
+            height: auto;
+            background-color: rgb(240, 209, 209);
+            padding: 2em;
+            border: solid 3px white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px black;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+        .completado{
+            text-decoration: line-through;
+            color: rgb(0, 0, 0);
+        }
+        
+        .tareaLabel{
+            list-style: none;
+            padding: 1em;
+            border: solid 3px white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px black;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            cursor: pointer;
+            
+        }
+        .pregunta{
+            width:500px;
+            height: auto;
+            background-color: rgb(240, 209, 209);
+            
+            border: solid 3px white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px black;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        ul{
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            justify-content: left;
+            align-items: left;
+            width: auto;
+            
+
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Die Hausaufgaben</h1>
+        <form>
+            <fieldset class="pregunta">
+                <legend>was hast du heute gemacht?</legend>
+                <input type="text" placeholder="schreib bitte!">
+                <button>hinzufügen</button>
+            </fieldset>
+        </form>
+        <ul id="relleno"></ul>
+    </div>  
+    <script>
+        const ingreso= document.querySelector('input');
+        const btnEnviar= document.querySelector('button');
+        const listaTareas= document.getElementById('relleno');
+
+        btnEnviar.addEventListener('click',function(e){
+            e.preventDefault(); // para que no se recargue la pagina
+
+            if (ingreso.value.trim()===""){
+                return alert("vergessen du nicht zu schreiben!");
+            }
+
+            const nuevoItem=document.createElement('li');
+            //creo el nuevo item
+            nuevoItem.textContent=ingreso.value;
+            nuevoItem.classList.add('tareaLabel');
+
+            listaTareas.appendChild(nuevoItem);
+            ingreso.value=""; //reseteo input
+
+            nuevoItem.addEventListener('click',function(){
+                nuevoItem.classList.toggle('completado');
+            });
+
+        });
+
+
+    </script>
+    
+</body>
+</html>

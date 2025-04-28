@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 5</title>
+    <style>
+        body{
+           
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(0, 0, 0);
+            transition: background-color 0.4s ease;
+        }
+        .contenedor{
+            width: 300px;
+            height: 300px;
+            background-color: rgb(240, 209, 209);
+            padding: 2em;
+            border: solid 3px white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px black;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+
+            
+        }
+        .contenedor label{
+            font-weight:bold;
+            font-size: 20px;
+            text-align: center;
+            font-family:sans-serif;
+        }
+        .contenedor input{
+            width: auto;
+            padding: 0.5em;
+            border: 2px solid rgb(126, 23, 126);
+            border-radius: 6px;
+            margin-bottom: 1em;
+            cursor: pointer;
+        }
+        
+        
+    </style>
+</head>
+<!--tres barras de rango, sliders. para representar los colores rgb-->
+<body>
+    <div class="contenedor">
+
+        <label for="rojo" style="color:red">Rojo</label>
+        <input type="range" id="rojo" min="0" max="255" step="1">
+        <!--type range para sliders-->
+
+        <label for="verde" style="color:green">Verde</label>
+        <input type="range" id="verde" min="0" max="255" step="1">
+
+        <label for="azul" style="color:blue">Azul</label>
+        <input type="range" id="azul" min="0" max="255" step="1">
+
+       
+    </div>
+    <script>
+        //accedo a los elementos, con el id
+        const rojo = document.getElementById('rojo');
+        const verde = document.getElementById('verde');
+        const azul = document.getElementById('azul');
+        
+        const contenedor = document.querySelector('.contenedor');
+
+       
+        function cambiarColor(){
+            document.body.style.backgroundColor = `rgb(${rojo.value},${verde.value},${azul.value})`;
+
+            //trsaformo los valores de los sliders en enteros
+            const r = parseInt(rojo.value);
+            const g = parseInt(verde.value);
+            const b = parseInt(azul.value);
+
+            //calculo los complementarios
+            const compR = 255 - r;
+            const compG = 255 - g;
+            const compB = 255 - b;
+
+            contenedor.style.backgroundColor = `rgb(${compR}, ${compG}, ${compB})`;
+
+        } //accedo a a propiedad style del body y le asigbno los valores de los sliders
+
+        // el evento de input se dispara cuando  detecta que se cambia el valor de los sliders
+        rojo.addEventListener('input',cambiarColor);
+        verde.addEventListener('input',cambiarColor);
+        azul.addEventListener('input',cambiarColor);
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>movimiento</title>
+    <style>
+        body{
+            background-color: rgb(202, 142, 202);
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .contenedor-wrapper {
+            position: relative; /*para facilitar la colocación del slider del eje Y.*/
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contenedor{
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            background-color: rgb(182, 151, 180);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px black;
+            position: relative; /* Necesario para posicionar elementos hijos */
+            overflow: hidden; /* Para evitar que la caja se salga del contenedor */
+        }
+        .caja{
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+            box-sizing: border-box;
+            border-radius: 10px;
+            background-color: red;
+            position: absolute; /* Permite mover la caja dentro del contenedor */
+            top: 0;
+            left: 0;
+        }
+        .ejeYy{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: -100px;
+            
+            
+        }
+        .ejeYy input{
+            transform: rotate(270deg);
+            margin-top: 10px;
+            height:300px;
+            width: 300px;
+            
+        }
+        .ejeXx{
+            margin-top:10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: -200px;
+
+            
+        }
+        .ejeXx input{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor-wrapper"> <!-- tuve q armar un div para posicionar al slider + la caja-->
+
+        <div class="contenedor">
+            <div class="caja" id="caja1"></div>
+        </div>
+        <div class="ejeYy">
+            <label for="ejeY">Eje Y</label>
+            <input type="range" id="ejeY" min="0" max="200" step="1">
+        </div>
+    </div>
+    <div class="ejeXx">
+ 
+        <label for="ejeX">Eje X</label>
+        <input type="range"  id="ejeX" min="0" max="200" step="1">
+    </div>
+    
+    <script>
+        //primer paso, acceder a los elementos
+        const caja1= document.getElementById('caja1');
+        const ejeY= document.getElementById('ejeY');
+        const ejeX= document.getElementById('ejeX');
+        // valores inicialesde posicion
+        let x=0;
+        let y=0;
+        //"escuchar" los inputs del eje y, x
+        ejeY.addEventListener('input',function(){
+            y=ejeY.value; //actualizo el valor de y
+            moverCaja();
+            /*caja1.style.bottom=`${y}px`;*/
+           
+        });
+        ejeX.addEventListener('input',function(){
+            x=ejeX.value;
+            moverCaja();
+            /*caja1.style.left=`${x}px`;*/
+            
+        });
+        function moverCaja(){
+            caja1.style.transform=`translate(${x}px,${y}px)`;
+        }
+
+        
+
+    </script>
+</body>
+</html>

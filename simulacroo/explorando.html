@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>experimento</title>
+</head>
+<body>
+    <h1 id="tituloo">bancate ese defecto</h1>
+    <p class="parrafo">aaunque te arregles las gomas nena</p>
+    <p class="parrafo">seguiras siendo rara</p>
+
+    <div class="contenedor">
+        <ul>
+            <li>sabor</li>
+            <li>no es culpa tuya</li>
+            <li>si la nariz no hace juego con tu cara</li>
+        </ul>>
+    </div>
+    <script>
+        const tit= document.getElementById("tituloo");
+        const parrafo= document.getElementsByClassName("parrafo");
+        const items= document.querySelectorAll("li");
+
+        tit.textContent="riders on the storm";
+        for (let i=0;i < parrafo.length;i++){ //tuve que recorrer cada posicion
+            parrafo[i].style.color="blue";
+        }
+
+        for (let i=0;i < items.length;i++){ //tuve que recorrer cada posicion
+            items[i].textContent+=" --L.A WOMAN!";
+        }
+        
+
+
+    </script>
+    
+</body>
+</html>

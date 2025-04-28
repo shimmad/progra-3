@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="URF-8">
+        <title>Cambiar fondo</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: background-color 0.4 ease;
+                font-family: sans-serif;
+
+            }
+            button {
+                padding: 1em 2em;
+                font-size: 1.2rem;
+                background-color: rgb(185, 144, 224);
+                color: rgb(57, 11, 63);
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                box-shadow: 0 4px 10px black;
+                transition: transform 0.2s, background-color 0.2s;
+            }
+            button:hover {
+                background-color: pink;
+                transform: scale(1.05);
+            }
+        </style>
+    </head>
+
+    <body>
+        <button onclick="cambiarFondo()">Cambiar Fondo</button>
+    
+        <script>
+            const colores = ["#5dd","#af3","#f51", "#ff2", "2ff","f2f"];
+
+            function cambiarFondo(){
+                const aleatorio= colores[Math.floor(Math.random()*colores.length)];
+                document.body.style.backgroundColor=aleatorio;
+                alert("cambio!")
+            }
+        </script>
+    </body>
+
+</html>
+
+
+
+

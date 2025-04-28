@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="URF-8">
+        <title>Cronometro</title>
+        <style>
+            body{
+                margin:0;
+                height:100vh;
+                display:flex;
+                justify-content: center;
+                align-items: center;
+                font-family: sans-serif;
+                background-color: rgb(198, 144, 219);
+            }
+            .contenedor{
+                width: 300px;
+                height:300px;
+                padding: 2rem;
+                background-color: white;
+                box-shadow: 0 4px 12px black;
+                text-align: center;
+                border-radius: 100%;
+            }
+            .numero{
+                margin-top: 5rem;
+                font-size:5rem;
+                margin-bottom: 0.5em;
+            }
+            .botones button{
+                margin:0;
+                padding:0.5rem;
+                font-size: 1rem;
+                border: groove rgb(1, 96, 151) ;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px black;
+
+                cursor: pointer;
+                transition: background-color 0.2s;
+
+            }
+            .botones button:hover{
+                opacity: 0.7;
+            }
+            #inicio{
+                background-color: rgb(10, 103, 134);
+                color:white;
+
+            }
+            #reinicio{
+                background-color: blueviolet;
+                color: white;
+            }
+            #pausa{
+                background-color: rgb(141, 3, 3);
+                color:white;
+
+            }
+
+        </style>
+    </head>
+    <body> <!-- ¿Qué elementos necesito en HTML?-->
+        <!--un div que contenga todo ,un divque muestre el numero, 3 botones
+        inicio pausa y reinicio -->
+        <div class="contenedor">
+            <div class="numero"> 00:00 </div>
+            <div class="botones">
+                <button id="inicio" onclick="iniciar()">iniciar</button>
+                <button id="reinicio" onclick="reiniciar()">reiniciar</button>
+                <button id="pausa"onclick="pausar()">pausar</button>
+            </div>
+        </div>
+
+
+        <script>
+            let segundos =0;
+            let min=0
+            let intervalo=null;//Hay que usar setInterval() para hacer avanzar el tiempo cada segundo. loo guardo en ua variable
+            const pantalla= document.querySelector(".numero")//agrro el contenido del div
+
+
+            function mostrarTiempo(){
+            
+                let m= min.toString().padStart(2, '0');
+
+                let s= segundos.toString().padStart(2, '0');
+                pantalla.textContent= m + ":" + s;
+            }
+
+            function iniciar(){
+                if (intervalo===null){
+                    intervalo= setInterval(()=>{
+                        segundos++;
+                        if (segundos >= 60) {
+                            min++;
+                            segundos = 0;
+                            
+                        }
+                        mostrarTiempo();
+                    },1000);
+                    // "Ejecutá este bloque de código cada 1000 milisegundos, o sea, cada 1 segundo".
+                }
+
+            }
+         
+            function pausar(){
+                clearInterval(intervalo);
+                intervalo=null;
+
+            }
+            function reiniciar(){
+                pausar();
+                min= 0;
+                segundos=0;
+                mostrarTiempo();
+                
+
+            }
+            
+
+        </script>
+    </body>
+</html>

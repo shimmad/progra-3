@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>verificacion de email</title>
+    <style>
+        body{
+            background-color: rgb(202, 142, 202);
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        form{
+            width: 300px;
+            border: 1px solid black;
+            padding: 1em;
+            background-color: rgb(182, 151, 180);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px black;
+        }
+       
+        input{
+            width: 90%;
+            padding: 0.8em;
+            font-size: 1rem;
+            border: 3px solid rgb(126, 23, 126);
+            border-radius: 6px;
+            margin-bottom: 1em;
+        }
+        button{
+            padding: 0.7em 1.5em;
+            font-size: 1rem;
+            background-color: rgb(67, 16, 116);
+            color: rgb(240, 238, 248);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px black;
+        }
+        button:hover{
+            opacity: 0.7;
+        }
+        #mensaje{
+            marigin: top 0.5em;
+            font-weight: bold;
+        }
+        #mensaje.error{
+            color: red;
+        }
+        #mensaje.ok{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>verificacion de email</h1>
+    <form id="formulario" novalidate> <!-- novalidate desactiva la validacion por defecto -->
+        <input type="email" id="email" placeholder=" ingrese su email">
+        <button type="submit">enviar</button>
+        <p id="mensaje"></p>
+    </form>
+    <script>
+        const formulario= document.getElementById('formulario');
+        const emaill= document.getElementById('email');
+        const mensaje= document.getElementById('mensaje');
+
+        const regex= /^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/i;
+        // i es para que no distinga entre mayusculas y minusculas
+        // \.[_a-z0-9]+ es para que acepte puntos y guiones bajos
+        // (\.[a-z0-9-]+)* es para que acepte multiples puntos y guiones bajos
+        formulario.addEventListener('submit', function(e) {
+            e.preventDefault(); //para que no se recargue la pagina
+
+        const email=emaill.value.trim();
+        if (regex.test(email)){
+            mensaje.textContent="email correcto";
+            mensaje.classList.ok;
+        }else{
+            mensaje.textContent="email incorrecto";
+            mensaje.classList.error;
+        }
+        });
+    </script>
+    
+</body>
+</html>

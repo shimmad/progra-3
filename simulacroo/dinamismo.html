@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>creadora</title>
+    <style>
+        body{
+            background-color: rgb(255, 216, 216);
+            transition: background-color 0.4s ease;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            font-family: sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .contenedor{
+            width: 300px;
+            height: auto;
+            background-color: rgb(240, 209, 209);
+            padding: 2em;
+            border: solid 3px white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px black;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            
+        }
+        #relleno{
+            list-style: none;
+            padding: 0;
+        }
+        .itemLabel{
+            background-color: aqua;
+            padding: 0.5em;
+            border-radius: 8px;
+            position: relative;
+            margin : 0.5em;
+            width:90%;
+
+        }
+        .eliminarBTN{
+            background-color: red;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 0.5em;
+            font-size: 0.7rem;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h3>que dinosaurios te gustan?</h3>
+        <input type="text" id="ingresado" placeholder="escribi un dinosaurio!">
+        <button id="agregar">agregar</button>
+        <ul id="relleno"></ul>
+
+    </div>
+    <script>
+        const btnAgregar= document.getElementById("agregar");
+        const ingreso=document.getElementById("ingresado");
+        const lista= document.getElementById("relleno");
+
+        btnAgregar.addEventListener("click",function(){
+            if(ingreso.value==""){
+                return alert("no te olvides de escribir algo!");
+            }
+            /*tebgo q creear un nuevo elemento li dentro de la lista con su
+            respectivo nboton de eliminar. ambos uevos elementos quiero crear una clase
+            para dsps poder darle estilo*/
+            const nuevoItem=document.createElement("li");
+            nuevoItem.textContent=ingreso.value;
+            nuevoItem.classList.add("itemLabel");
+            // creo el nuevo item y le agrego la clase itemLabel
+
+            relleno.appendChild(nuevoItem);
+            // agrego el nuevo item a la lista
+            
+
+            const btnEliminar=document.createElement("button");
+            btnEliminar.textContent="eliminar";
+            btnEliminar.classList.add("eliminarBTN");
+            // creo el boton y le agrego la clase eliminarBTN
+
+            nuevoItem.appendChild(btnEliminar);
+            // agrego el boton al nuevo item
+
+
+            btnEliminar.addEventListener("click",function(){
+                lista.removeChild(nuevoItem);
+            });
+
+            ingreso.value=""; // limpio el input
+
+
+  
+            
+        });
+
+
+        
+
+
+
+    </script>
+    
+</body>
+</html>
