@@ -1,0 +1,79 @@
+<!--Ejercicio 2 – Página dinámica con Vanilla Javascript (55%)
+
+Galería de imágenes interactiva. Crea un script que detecte clics sobre miniaturas y actualice la imagen principal mostrada sin recargar la página.
+Ayudas:
+   a. Adjunta hay una animación que puede ser útil
+   b. Los tags de imágenes del tipo <img src=”…” en el DOM poseen el atributo .src
+   c. Adjuntas hay 4 imágenes que puedes usar para resolver este ejercicio.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>galeria interactiva</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+
+        }
+        .galeria {
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .miniaturas {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            
+        }
+        .miniaturas img{
+            width: 80px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .miniaturas img:hover{
+            border-color: #333;
+        }
+        .imagen-grande{
+            width: 550px;
+            height: 450px;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+   
+
+    </style>
+</head>
+<body>
+    <div class="galeria">
+        <h1> Galería</h1>
+        <img src="../imagenes/fiestabx.png" alt="imagen 1" id="imagenPrincipal" class="imagen-grande">
+
+    </div>
+    
+
+    <div class="miniaturas">
+        <img src="../imagenes/arca.jpg" alt="miniatura 1" class="miniatura">
+        <img src="../imagenes/googleee.jpg" alt="miniatura 2" class="miniatura">
+        <img src="../imagenes/Recipe-40-Empanadas-de-soja-800x547.jpg" alt="miniatura 3" class="miniatura">
+        <img src="../imagenes/603A44B9-2C18-4800-89C8-5CD66D3B0A7B.jpeg" alt="miniatura 4" class="miniatura">
+    </div>
+    <script>
+        const principal = document.getElementById("imagenPrincipal");
+        const miniaturas = document.querySelectorAll(".miniatura");
+
+        // recorro todda la selleccion de miniaturas y le agrego un evento click
+        miniaturas.forEach(miniatura => {
+            miniatura.addEventListener("click", () => {
+                principal.src = miniatura.src; // actualiza la imagen principal con la miniatura seleccionada
+            });
+        });
+
+    </script>
+    
+</body>
+</html>

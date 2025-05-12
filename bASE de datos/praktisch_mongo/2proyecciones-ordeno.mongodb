@@ -1,0 +1,20 @@
+use ('facultad');
+
+//mostar solo nombnre  y carrera de los estudiantes
+db.estudiantes.find({},{nombre:1, carrera:1});
+
+// listar los estudiantes ordenados por promedio descendente
+db.estudiantes.find().sort({promedio:-1});//de mayor a menor
+
+//mostrar los 5 estudiantes con menor edad
+db.estudiantes.find().sort({edad:1}).limit(5);//de menor a mayor
+
+//mostrar el nombre y la carrera de los 3 estudiantes con mayor promedio
+db.estudiantes.find({},{nombre:1, carrera:1}).sort({promedio:-1}).limit(3);
+
+// modtrar nombre y edad excluyendo el id
+db.estudiantes.find({},{nombre:1, edad:1, _id:0});
+
+//mostrar el nombre y la carrera de los estudiantes que tengan un promedio mayor a 4
+db.estudiantes.find({promedio:{$gt:4}},{nombre:1, carrera:1});
+

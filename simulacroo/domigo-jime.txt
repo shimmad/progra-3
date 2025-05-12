@@ -1,0 +1,57 @@
+background:
+color
+image: url("https..");
+-size: cover;
+-position: top
+-attatchment: fixed; se queda la foto atras, se mueve el scroll
+
+:linear-gradient(2 parametros,to right, colores, transparent)
+se define un color fijo en el body y a la caja se le aplica un gardient 
+para hacer la variscion de color del body
+
+:radial-gardient (zb mira)
+:conic-gardient
+---------
+box-shadow: px mov horzontal(0),mov vertical(0), desenfoque40px, extension 0, color q se difumina
+resalta elemnto
+
+text-shadow:0 0 5px black
+
+img{
+filter:drop-shadow(0 0 15px black)
+}
+-----
+<link rel="icon" href="icono.png" type="image/png" 
+// type para explicarle al navegador y que lo haga mas rapido(imgn)
+//debe ser 32x32, pequeño para que cxargue rapido
+
+metadatos
+
+importante para el motor de busqueda del navegador, posicionamiento
+
+<meta charset="UTF-8">
+le dice al navegador que lenguaje tiene la pag, q codificacion va a usat
+utf 8 permite todo tipo de caracteres
+
+todas las metatags tioenen name= (que info estoy declsarando)
+y content=(que estamos diciendo)
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+content para qwue nuestra pagina se adapte a todos los dispositvos
+initial scale, el zoom inicial de la pagina
+
+<meta name="description" content="de esto trata la pagina asi me encontras"
+
+<meta name="keywords" content="banan, manzana, durazno, lechuga"
+
+<meta name="autor" content="grupo programacion"
+
+<meta name="title= content="venta de frutas">
+
+<meta name="OG:TITLE/IMAGE/DESCRIPTION" content=""> lo q se ve cuando se linkea la pagina
+
+
+
+
+
+
+                   

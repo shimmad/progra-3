@@ -1,0 +1,103 @@
+<!--Ejercicio 1 – Diseño responsivo con Flexbox y Grid (45%)
+Escribe un archivo de estilos que, en vista de escritorio, coloque un menú en fila usando Flexbox y disponga las tarjetas de contenido en dos columnas con Grid. Luego añade una regla para que, en pantallas de menos de 600 px de ancho, tanto el menú como las tarjetas se reorganicen en una única columna.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>responsive</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+            background-color: aquamarine;
+            width: 100%;
+            height: auto;
+        }
+        
+        .menu { /*menu en fila usando Flexbox*/
+            display: -webkit-inline-flex; /*organizar elementos en filas o columnas, con display se designa un contenedor de cracteristicas flex o inline-flex, se van a distribuir segun la regas de flexbox
+            display:-webkit-inline-flex; hace que un elemento se visualice como un contenedor flexible, pero en línea  */ 
+
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+            width: 100%;
+            gap:5px;
+        }
+        .tarjetas{/*tarjetas en 2 columnas usando grid*/
+            /* Grid es bidimensional, permitiendo la organización en filas y columnas simultáneamente*/
+            display: grid;/* grid es un contenedor que se divide en filas y columnas*/
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 500px;
+            border: solid 1px #333;
+            padding: 20px;
+            
+
+        }
+        .card{/* estilo de las tarjetas*/
+            width: 150px;
+            height: 250px;
+            background-color: #333;
+            color: #fff;
+            border:solid 1px #333;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            text-align: center;
+            
+        }
+        @media (max-width: 600px) {/*este diseño corresponde a pantallas de menos de 600px de ancho*/
+            .menu {
+                flex-direction: column; /* menu en columna*/
+                align-items: center; /* centrar verticalmente*/
+            }
+            .tarjetas {
+                grid-template-columns: 1fr;/*1 sola columna*/
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <nav class="menu">
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <section class="tarjetas">
+        <div class="card">
+            <h2>Card 1</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.</p>
+        </div>
+        <div class="card">  
+            <h2>Card 2</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.</p>
+            </div>
+            <div class="card">
+                <h2>Card 3</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.</p>
+                </div>
+            <div class="card">
+                <h2>Card 4</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptates.</p>
+            </div>
+    </section>
+    
+</body>
+</html>

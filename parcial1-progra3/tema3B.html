@@ -1,0 +1,101 @@
+<!--Ejercicio 2 – Detección de número par o impar (50%)
+
+En la página ya existen:
+
+Un campo de texto para introducir un número (id="numero").
+Un botón para comprobar (id="comprobar").
+Al pulsar el botón, tu script deberá:
+
+Si el campo de texto está vacío, mostrar en una ventana emergente: "El texto está vacío".
+Si no es un número válido, mostrar en un texto debajo del campo el texto "No es un número válido".
+Si es un número válido, calcular si es par o impar (puedes usar: x % 2) y mostrar en una ventana emergente "El número es par" o "El número es impar".
+Ayuda: Puedes usar addEventListener('click', ...), Number() o parseInt(), <colorisNaN() y el operador módulo %. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>numero</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0; 
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container{
+            width: 400px;
+            height: 200px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        input{
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        p{
+            color: red;
+            font-weight: bold;
+            margin-top: -4px;
+            font-size: small;
+            display: none;
+        }
+        button{
+            width: 80%;
+            padding: 10px;
+            background-color: #007bff;
+            color:#f2f2f2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(44, 2, 2, 0.1);
+        }
+        button:hover{
+            background-color: #0056b3;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>el numero es par o impar?</h2>
+        <input type="text" id="numero" placeholder="Introduce un número">
+        <p>no es valido el numero</p>
+        <button id="comprobar">Comprobar</button>
+    </div>
+    <script>
+        const comprobarBtn = document.getElementById('comprobar');
+        const numeroInput = document.getElementById('numero');
+
+        comprobarBtn.addEventListener('click', () => {
+            const num = numeroInput.value;
+            if (num === '') {
+                alert('El texto está vacío');
+            } else if (isNaN(num)) {
+                document.querySelector('p').style.display = 'block';
+                
+            } else {
+                const valor= parseInt(num);
+                if (valor% 2 === 0) {
+                    alert('El número es par');
+                } else {
+                    alert('El número es impar');
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>
