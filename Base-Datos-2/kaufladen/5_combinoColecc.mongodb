@@ -1,0 +1,67 @@
+use ('kaufladen')
+
+//operacion de join con $lookup
+
+/*
+-Enriquecer cada documento de ventas con la información 
+completa del producto vendido (mediante un lookup a la colección productos).
+-Calcular el total vendido por categoría de producto.
+*/
+//en la primer consigna quiere que muestre por cada venta la informacion del producto completa
+
+//ejercicio1
+db.ventas.aggregate([
+    {
+        $lookup: { //combino cada venta con la informacion de su prducto
+            from: "productos", //coleccion a que le hago join 
+            localField: "producto_id",//csmpo de la coleccion de ventas
+            foreignField: "_id",//campo de la coleccion de productos
+            //le estoy diciendo que relacione el campo producto_id con el campo _id de la coleccion productos
+            as: "producto_detallado" //nuevo campo con la informacion del producto completo
+        }
+    },
+    {
+        $unwind: "$producto_detallado" //desanida el array producto_detallado para acceder mas facilmente a sus campos
+    },
+    { //mejor presentacion
+    $project: { // esto es sobre la coleccion de ventas
+      _id: 0,
+      "cliente.nombre": 1,
+      "producto_detallado.nombre": 1,
+      cantidad: 1,
+      total: 1
+    }
+  }
+    //{$match: {"producto_detallado.categoria": "Electrónica"}},
+    // filtro por categoria
+])
+ 
+//ejercicio2
+db.ventas.aggregate([
+    {
+        $lookup: { //
+            from: "productos", //coleccion a que le hago join 
+            localField: "producto_id",//csmpo de la coleccion de ventas
+            foreignField: "_id",//campo de la coleccion de productos
+            //le estoy diciendo que relacione el campo producto_id con el campo _id de la coleccion productos
+            as: "producto_info" //nuevo campo con la informacion del producto completo
+        }
+    },
+    {
+        $unwind: "$producto_info" //desanida el array producto_detallado para mejor lectura
+    },
+    {
+        $group:{ //agrupo por el campo categoria que indico en el _id 
+            _id: "$producto_info.categoria", 
+            total_ventas: {$sum: "$total"}, // total_ventas es el campo que va a realizar el sum de la ganancia 
+            cantidad_total_ventas: {$sum: "$cantidad"}// cantidad_total_ventas es el campo que va a sumar la cantidad de ventas de la categoria
+        }
+    },
+    {
+        $sort:{
+            total_ventas: -1 // ordeno de mayor a menor
+        }
+    }
+    
+  
+])

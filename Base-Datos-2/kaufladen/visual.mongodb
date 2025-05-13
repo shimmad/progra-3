@@ -1,0 +1,6 @@
+use ('kaufladen')
+
+//quiero visualiazir la base de datos para armar un grafico en mi cuaderno
+//db coleccion .find().pretty()
+//db.productos.find().pretty()
+db.ventas.find().pretty()

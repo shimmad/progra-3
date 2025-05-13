@@ -1,0 +1,77 @@
+use ('kaufladen')
+
+//practico con  fechas en el pipeline de agregacion
+//tarea 1: agrupar ventas por mes y calcular el total vendio por mes
+
+//trabajo sobre la coleccion ventas, tengo q agrupar segun el campo fecha 
+// y agrego un campo donde contenga el total de la suma de lo q se vendio en el mes
+
+db.ventas.aggregate([
+    {
+     $group: {
+            _id: {
+                mes: {
+                    $month: "$fecha"
+                }
+            },
+            plata_obtenida: {
+                $sum: "$total"
+            }
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            mes: "$_id.mes",
+            plata_obtenida: 1
+        }
+    },
+    {
+        $sort: {
+            mes: 1
+        }
+    }
+])
+//tarea 2: encopntrar el dia del mes con mas ventas
+
+//trabnao sobre la coleccion ventas, tengo q agrupar segun el campo fecha, agrupo por dia del mes y agrego un campo donde contenga el total de la suma de lo q se vendio en el dia del mes y la cantidad de ventas
+
+db.ventas.aggregate([
+    
+    {
+        $group: {
+            _id: {
+                dia: {
+                    $dayOfMonth: "$fecha"
+                }
+            },
+            plata_obtenida: {
+                $sum: "$total"
+            },
+            cantidad_ventas: {
+                $sum: "$cantidad"
+
+            }
+        }
+    },
+    {
+
+        
+        $project: {
+            _id: 0,
+            dia: "$_id.dia",
+            plata_obtenida: 1,
+            cantidad_ventas: 1
+            },
+        },
+        
+        {
+            $sort: {
+                dia: 1
+            }
+        }
+    
+
+])
+
+        
