@@ -1,0 +1,31 @@
+use ('estudiantes')
+
+//listar los estudiantes cuya edad esta entre 20 y 25 i
+
+db.estudiantes.find({
+    edad:{$gte: 20, $lte:25}
+});
+
+//incrementar en 0.2 el campo prinerdui de todos los ingenieros
+
+db.estudiantes.updateMany(
+    {carrera: "Ingeniería"},
+    {$inc:{promedio:0.2}}
+
+);
+
+// eliminar estudiantes con promedio menor a 7
+db.estudiantes.deleteMany(
+    {promedio: {$lt:7}}
+);
+
+//buscar estudiantes cuyo nombre comience con m o promedio sea mayor o igual a 9
+db.estudiantes.find({
+    
+        $or:[
+            {nombre: {$regex: /^M/}}, //con regex /^M/ estoy buscando q el nombre comience con esa letra
+            {promedio:{$gte:9}}
+        ]
+        //si quiero q busque que termine con z $regex: /z$/, q conteng ar /ar/, $options: "i" ignora casesensitive
+
+});

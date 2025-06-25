@@ -1,0 +1,76 @@
+use ('kaufladen')
+
+// combinar nultiples etapas en un pipeline complejo
+// un informe de ventas q incluya;
+/*tengo q hacer un campo top 3 prodctos + vendidos(cantidad)
+cada prod debo proyectar nombre categoria total unicdades vendidas
+monto total generado
+y una avg de la puntuACion en valoraciones
+
+estrategia: usar lookup para combinar coleccioon 
+trabajo sobre la tabla fventas*/+
+
+//uso lookup sort para el top 3  group para el total y avg
+
+db.ventas.aggregate([
+    {
+        //AGRUPO por producto_id y sumo la cantidad de unidades vendidas y el total de la venta
+        $group: {
+          _id: "$producto_id",
+          total_unidades:{$sum: "$cantidad"},
+          total_monto: {$sum: "$total"}
+        }
+    },
+    //ahora tengo que traer los datos delprod con un lookup a ventas
+    // asique localizo el produ del q estoy hablando en la otra coleccion
+    {
+        $lookup: {
+          from: "productos",
+          localField: "_id",
+          foreignField: "_id",
+          as: "producto"
+        }
+    },
+    { // unwind para desglosar cada elemento
+        $unwind: "producto"
+    },
+    {
+        // traigo las valoraciones para calcular el prom
+        $lookup: {
+          from: "valoraciones",
+          localField: "_id",
+          foreignField:"producto_id",
+          as: "valoraciones"
+        }
+    },
+    {
+        $addFields: {
+          puntuacion_avg: {
+            $avg: "$valoraciones.puntuacion"
+          }
+        }
+    },
+    //proyectar los campos q necesito
+    {
+        $project: {
+          _id:0,
+          nombre: "$producto.nombre",
+          categoria: "$producto.categoria",
+          total_unidades: 1,
+          total_monto: 1,
+          puntuacion_avg: {
+            $round: ["$puntuacion_avg", 2]
+          }
+        }
+    },
+    //ordeno por unidades vendidas y dejo las 3 mjores
+    {
+        $sort: {
+          total_unidades: -1
+        }
+    },
+    {
+        $limit: 3
+    }
+
+])

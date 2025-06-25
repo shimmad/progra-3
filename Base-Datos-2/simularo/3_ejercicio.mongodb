@@ -1,0 +1,25 @@
+use ('mercado')
+
+db.ventas.aggregate([
+    {
+        $match:{ //filtro entre el 1/1 y el 31/3
+            fecha:{
+                $gte:ISODate("2025-01-10T12:00:00Z"),
+                $lte:ISODate("2025-03-31T12:00:00Z")
+            }
+        }
+    },
+    //agrupo por categoria y calculto totL de ventas y num de trans
+    { $group:{
+        _id:"$categoria",
+        total_ventas:{$sum:"$monto"},
+        num_transacc:{$sum:1}
+    }
+
+    },
+    //ordeno los resultados de forma descendente por total_ventas
+    {$sort:{total_ventas:-1}},
+    //liminto a las 3 primeras que serian las de mayor facturacion
+    {$limit:3}
+
+])

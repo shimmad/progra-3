@@ -1,0 +1,15 @@
+use ('tienda');
+
+//como me dice devcoclcer cada documento cliente debo trabajar con ,la coleccion clientes y hacer un lookup para traer los pedidos
+
+db.clientes.aggregate([
+    {
+        $lookup: {
+          from: "pedidos",
+          localField: "_id",
+          foreignField: "cliente_id",
+          as: "pedidos_cliente"
+        }
+    },
+    
+])

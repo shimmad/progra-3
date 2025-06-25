@@ -1,0 +1,88 @@
+use ('kaufladen')
+
+//un informe que incluya: a )total gastado x  cliente, 
+//b) numero de compras realizadas
+//c)fecha primer y ult compra
+//prod favorito (el q mas compro) 
+//categoria fav: donde mas gastp
+// fecha primer y ult compra
+
+
+db.ventas.aggregate([
+    {
+        $addFields: { //para acceder al _id dento del subdocumento cliente uso, añadp los siguentes campos
+          cliente_id: "$cliente._id", //guardo la info del subdocumento cliente
+          cliente_nombre:"$cliente.nombre"
+        }
+
+    },
+    {
+        $lookup:{ //traigo el produ 
+            from:"productos",
+            localField: "producto_id",
+            foreignField: "_id",
+            as: "info_produ"
+        }
+    },
+    //como el loopkup me decuelve un array ahora necisto un unwind para acceder a los elementos
+    {
+        $unwind: "$info_produ"
+    },
+    //etapa 1: datso del clienta a)b)c)
+    {
+        $group:{ //creo un docu por cliente con un array con  info de los productos q compro
+            _id:{ //agrupo por un objeto id con el id y  nombre de cliente asi me aseguro de que cada uno tengan documentos individuales
+                cliente_id:"$cliente_id",
+                cliente_nombre: "$cliente_nombre"
+            },
+            
+            total_gastado:{$sum:"$total"},
+            compras_realizadas: {$sum:1},
+            primera_compra: {$min: "$fecha"},
+            ultima_compra: {$max:"$fecha"},
+            productos_comprados:{
+                $push:{ // creo un array con push(dentrode un group) meto valores
+                    producto_id:"$info_produ._id",
+                    categoria: "$info_produ.categoria",
+                    cantidad:"$cantidad"
+                }
+            }
+
+        }
+    }, 
+    //etapa 2; producto fav y categoria fav
+    //agrego un campo, creo un array con los productos comprados, y elijo que se muestre elñ primero
+    {
+        $addFields:{
+            producto_fav:{
+                $first:{
+                    $slice:[ //toma una rebanada del array
+                        {
+                            $sortArray:{ //orden el array exsistente dentro del docu
+                                input: "$productos_comprados", //el array creado con push
+                                sortBy: {cantidad: -1} // de mayor a menot
+                            }
+                        },
+                        1 // la porcion del array
+                    ]
+                }
+            }
+        }
+    },
+// project para un resultado lindo y claro
+    {
+        $project:{
+            _id:0,
+            cliente_nombre:"$_id.cliente_nombre",
+            total_gastado:1,
+            compras_realizadas:1,
+            primera_compra:1,
+            ultima_compra:1,
+            producto_fav:"$producto_fav.producto_id",
+            categoria_preferida: "$producto_fav.categoria"
+            
+
+        }
+
+    }
+])

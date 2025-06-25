@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html labg="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Turnos</title>
+    </head>
+    <body>
+        <h1>Bienvenida, <%= nombre %></h1>
+        <h2>Turnos cargados:</h2>
+        <ul>
+            <% turnos.forEach(t=>{%>
+                <li><%= t.paciente %> - <%= t.fecha %></li>
+            <%})%>
+        </ul>
+    </body>
+</html>

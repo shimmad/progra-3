@@ -1,6 +1,6 @@
 
 use ('kaufladen');
-db.dropDatabase();
+//db.dropDatabase(); 
 
 db.productos.insertMany([
     {
@@ -148,6 +148,10 @@ db.productos.insertMany([
       fecha_ingreso: new Date("2023-03-20")
     }
   ]);
+
+
+
+
   
   db.ventas.insertMany([
     {

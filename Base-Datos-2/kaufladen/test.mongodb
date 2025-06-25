@@ -1,0 +1,5 @@
+use ('kaufladen')
+
+db.ventas.find({ "cliente.nombre": "Carlos López" })
+
+db.ventas.find().limit(3)

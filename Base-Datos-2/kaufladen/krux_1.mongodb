@@ -1,0 +1,37 @@
+use ('kaufladen');
+
+//un pipline q obtenga los prods con puntuacion promedio mas alta con al menols 2 valoracoinnes
+// trabajo sobre la coleccion productos
+
+db.productos.aggregate([
+    {
+        $project: { // me quedo solo con el nombre y las valoraciones
+            _id:0,
+          nombre: 1,
+          valoraciones: 1
+        }
+    },
+    { // descplego el array para trabajar con documentos independientes
+        $unwind: 
+         "$valoraciones"
+        },
+    {
+        $group: {
+          _id: "$nombre",
+          cantidad_valoraciones: {$sum:1},
+          valoracion_avg:{$avg:"$valoraciones.puntuacion"}
+        }
+    },
+    {
+        $match:{
+            cantidad_valoraciones: {$gte:2}
+        }
+    },
+    {
+        $sort:{
+            valoracion_avg: -1 //de mayor a menor
+
+        }
+    }
+    
+])
