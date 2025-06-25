@@ -1,5 +1,6 @@
 // backend/models/index.js
-const { Sequelize } = require('sequelize');
+// inicializa swquelize y centraliza la conexion
+const { Sequelize, DataTypes } = require('sequelize');
 const config = require('../config/database');
 
 const env = process.env.NODE_ENV || 'development';
@@ -18,8 +19,26 @@ const sequelize = new Sequelize(
     dialectOptions: dbConfig.dialectOptions
   }
 );
+// importo modelos
+const db= {};
 
-module.exports = {
-  sequelize,
-  Sequelize
-};
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+//importo cada modelo y lo agrego al objeto db
+db.Usuario = require('./usuario')(sequelize, DataTypes);
+db.Producto = require('./producto')(sequelize, DataTypes);
+db.Compra = require('./compra')(sequelize, DataTypes);
+db.Challenge = require('./challenge')(sequelize, DataTypes);
+db.Ejercicio = require('./ejercicio')(sequelize, DataTypes);
+db.Seguimiento = require('./seguimiento')(sequelize, DataTypes);
+db.ChallengeEjercicio = require('./challengeejercicio')(sequelize, DataTypes);
+
+//llamo a associate de cada modelo si existe
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
+
+module.exports = db;

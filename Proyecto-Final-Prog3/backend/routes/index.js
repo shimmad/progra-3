@@ -23,4 +23,14 @@ router.get('/test', (req, res) => {
   });
 });
 
+//monto sub-rutas especficas de cada conrolador
+
+router.use('/usuarios', require('./usuarioRoutes'));
+router.use('/productos', require('./productoRoutes'));
+router.use('/ejercicios', require('./ejercicioRoutes'));
+router.use('/compras', require('./compraRoutes'));
+router.use('/challenges', require('./challengeRoutes'));
+router.use('/challengeEj', require('./challengeEjRoutes'));
+router.use('/seguimientos', require('./seguimientoRoutes'));
+
 module.exports = router;
