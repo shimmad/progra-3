@@ -1,5 +1,5 @@
 # docker-compose.yml con hot reload optimizado
-version: '3.8'
+# version: '3.8'
 
 services:
   # Base de datos PostgreSQL
@@ -45,6 +45,7 @@ services:
       - "3001:3001"
       - "9229:9229"  # Puerto para debugging
     volumes:
+      - ./backend:/app
       - backend_node_modules:/app/node_modules
     depends_on:
       database:

@@ -1,5 +1,6 @@
 // backend/models/index.js
 // inicializa swquelize y centraliza la conexion
+
 const { Sequelize, DataTypes } = require('sequelize');
 const config = require('../config/database');
 
@@ -19,20 +20,20 @@ const sequelize = new Sequelize(
     dialectOptions: dbConfig.dialectOptions
   }
 );
-// importo modelos
+// importo modelos que se comunican con la db modelSeq
 const db= {};
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 //importo cada modelo y lo agrego al objeto db
-db.Usuario = require('./usuario')(sequelize, DataTypes);
-db.Producto = require('./producto')(sequelize, DataTypes);
-db.Compra = require('./compra')(sequelize, DataTypes);
-db.Challenge = require('./challenge')(sequelize, DataTypes);
-db.Ejercicio = require('./ejercicio')(sequelize, DataTypes);
-db.Seguimiento = require('./seguimiento')(sequelize, DataTypes);
-db.ChallengeEjercicio = require('./challengeejercicio')(sequelize, DataTypes);
+db.Usuario = require('./usuarioSeq')(sequelize, DataTypes);
+db.Producto = require('./productoSeq')(sequelize, DataTypes);
+db.Compra = require('./compraSeq')(sequelize, DataTypes);
+db.Challenge = require('./challengeSeq')(sequelize, DataTypes);
+db.Ejercicio = require('./ejercicioSeq')(sequelize, DataTypes);
+db.Seguimiento = require('./seguimientoSeq')(sequelize, DataTypes);
+db.ChallengeEjercicio = require('./challengeejercicioSeq')(sequelize, DataTypes);
 
 //llamo a associate de cada modelo si existe
 Object.keys(db).forEach(modelName => {

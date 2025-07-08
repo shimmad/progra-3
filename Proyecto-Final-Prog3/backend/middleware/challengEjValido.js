@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const ejercicio = require('../models/ejercicio');
+
 
 const schema = Joi.object({
     challenge_id: Joi.number().required(),

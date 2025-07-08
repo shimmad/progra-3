@@ -11,7 +11,7 @@ funciones:
 /tienda --> ver productos
 /admin --> dashbord para CRUD (solo si sos admi)
 
--- entidades, tablas o modelos
+-- entidades,
 
 usuario: id, nombre, mail, contraseña, rol (admin,user)--> tiene muchos challenges, un admin puede gestionar todo
 
@@ -22,5 +22,9 @@ Ejercicio: id, nombre, tipo (ub,lb,fb,flex), video_url, descripcion --> un ejerr
 Seguimiento: id, usuario_id, challenge_id, dia, completado(bool) --> un usuario tien muchos seguimientos
 
 Producto: id, nombre, descripcion, precio, img --> para tienda, un usuario puede tener muchas compras?
+
+Challengeejercicio: challenge id ejercicio id, dia, posicion
+
+compra: prod id, usuario id, fecha, cant, precio total
 
 
